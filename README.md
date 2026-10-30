@@ -4,7 +4,7 @@ A modern, responsive, single-page interactive healthcare application built with 
 
 ---
 
-## 🌟 Key Featuresssss
+## 🌟 Key Featuresssssssss
 
 ### 1. Modern Healthcare UI & Aesthetics
 - **Curated Medical Palette:** White, light blue, brand teal, cyan, and deep navy blue.
