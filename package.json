@@ -1,0 +1,20 @@
+{
+  "name": "medicare-smart-doctor-appointment",
+  "version": "1.0.0",
+  "description": "MediCare – Modern Single-Page Doctor Appointment Booking System",
+  "main": "index.html",
+  "scripts": {
+    "start": "py -m http.server 3000",
+    "dev": "py -m http.server 3000",
+    "serve": "py -m http.server 3000"
+  },
+  "keywords": [
+    "healthcare",
+    "doctor-appointment",
+    "booking-system",
+    "telehealth",
+    "medical"
+  ],
+  "author": "MediCare Health Systems",
+  "license": "MIT"
+}

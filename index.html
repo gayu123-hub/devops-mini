@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediCare – Smart Doctor Appointment System</title>
+  <meta name="description" content="Book instant appointments with trusted, board-certified doctors across top specialities. Seamless, modern healthcare scheduling with MediCare.">
+  <meta name="keywords" content="doctor appointment, healthcare, medical booking, hospital, online clinic, cardiology, pediatrics, neurology">
+  
+  <!-- Favicon / Web Icon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩺</text></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 CDN for modern healthcare icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. Top Announcement Bar
+       ========================================================================= -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <div class="top-bar-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>MediCare Health City, 452 Wellness Blvd, Metro City</span>
+        </div>
+        <div class="top-bar-item">
+          <i class="fa-solid fa-clock"></i>
+          <span>Mon - Sat: 8:00 AM - 8:00 PM | Sun: 9:00 AM - 5:00 PM</span>
+        </div>
+      </div>
+      <div class="top-bar-right">
+        <div class="top-bar-item">
+          <span class="emergency-pill"><i class="fa-solid fa-truck-medical"></i> 24/7 Emergency</span>
+          <strong style="color: #ffffff; margin-left: 0.35rem;">+1 (800) 911-CARE</strong>
+        </div>
+        <div class="top-bar-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>support@medicare-health.org</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. Sticky Navigation Bar
+       ========================================================================= -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="container nav-container">
+      <!-- Logo -->
+      <a href="#home" class="brand-logo" id="navLogo">
+        <div class="brand-icon-wrap">
+          <i class="fa-solid fa-stethoscope"></i>
+        </div>
+        <div class="brand-text">Medi<span>Care</span></div>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link active" id="navLinkHome">Home</a></li>
+        <li><a href="#specialities" class="nav-link" id="navLinkServices">Services</a></li>
+        <li><a href="#doctors" class="nav-link" id="navLinkDoctors">Find Doctors</a></li>
+        <li>
+          <a href="#appointments" class="nav-link" id="navLinkAppointments">
+            My Appointments <span class="nav-badge-pill" id="navApptBadge">0</span>
+          </a>
+        </li>
+        <li><a href="#why-us" class="nav-link" id="navLinkAbout">About</a></li>
+        <li><a href="#testimonials" class="nav-link" id="navLinkReviews">Testimonials</a></li>
+        <li><a href="#contact" class="nav-link" id="navLinkContact">Contact</a></li>
+      </ul>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <button class="btn btn-primary" id="btnNavBookAppointment" onclick="openBookingModal()">
+          <i class="fa-solid fa-calendar-check"></i> Book Appointment
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       3. Hero Section
+       ========================================================================= -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-pill">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Certified & Trusted Healthcare Network</span>
+          </div>
+          <h1 class="hero-title">
+            Your Health, <br><span class="gradient-text">Our Priority</span>
+          </h1>
+          <p class="hero-subtitle">
+            Book appointments with trusted doctors easily and conveniently. Experience hassle-free medical scheduling, certified specialists, and prompt consultations tailored for you and your family.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="btn btn-primary btn-lg" id="btnHeroBook" onclick="openBookingModal()">
+              <i class="fa-solid fa-calendar-plus"></i> Book Appointment
+            </button>
+            <a href="#doctors" class="btn btn-secondary btn-lg" id="btnHeroFindDoctor">
+              <i class="fa-solid fa-user-doctor"></i> Find a Doctor
+            </a>
+          </div>
+
+          <!-- Stats Counters -->
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number"><span class="counter" data-target="50">50</span>+</div>
+              <div class="stat-label">Verified Doctors</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number"><span class="counter" data-target="10">10</span>+</div>
+              <div class="stat-label">Medical Specialities</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number"><span class="counter" data-target="1000">1000</span>+</div>
+              <div class="stat-label">Happy Patients</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual / Floating Doctors Card -->
+        <div class="hero-visual">
+          <div class="hero-image-wrap">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800" 
+                 alt="Professional Doctor examining digital health chart" 
+                 class="hero-main-img" 
+                 loading="eager">
+          </div>
+
+          <!-- Floating badge 1: Top Rated -->
+          <div class="hero-float-card-1">
+            <div class="float-icon">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <div class="float-info">
+              <h4>Top Rated Specialists</h4>
+              <p><i class="fa-solid fa-star" style="color: #fbbf24;"></i> 4.9/5 from 3,200+ Reviews</p>
+            </div>
+          </div>
+
+          <!-- Floating badge 2: Live Doctor Available -->
+          <div class="hero-float-card-2">
+            <div class="pulse-indicator"></div>
+            <div class="float-info">
+              <h4>Instant Booking</h4>
+              <p>15 Doctors available today</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       4. Our Specialities Section
+       ========================================================================= -->
+  <section class="specialities" id="specialities">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fa-solid fa-shapes"></i> Comprehensive Care</span>
+        <h2 class="section-title">Our Medical Specialities</h2>
+        <p class="section-subtitle">
+          Explore our diverse departments led by world-class specialists dedicated to your holistic wellbeing and recovery.
+        </p>
+      </div>
+
+      <div class="specialities-grid" id="specialitiesGrid">
+        <!-- Rendered dynamically from SPECIALITIES_DATA -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. Search & Filter Doctors Section
+       ========================================================================= -->
+  <section class="find-doctors" id="doctors">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fa-solid fa-user-doctor"></i> Medical Directory</span>
+        <h2 class="section-title">Find Your Trusted Doctor</h2>
+        <p class="section-subtitle">
+          Filter through our verified specialists by name, medical discipline, or next available slot and book within minutes.
+        </p>
+      </div>
+
+      <!-- Search & Filters Bar -->
+      <div class="search-filter-box">
+        <div class="search-form-row">
+          <!-- Name search input -->
+          <div class="input-with-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search doctor name, hospital, keyword..." aria-label="Search doctor by name">
+          </div>
+
+          <!-- Specialization dropdown -->
+          <div class="input-with-icon">
+            <i class="fa-solid fa-stethoscope"></i>
+            <select id="specialityFilter" aria-label="Filter by specialization">
+              <option value="all">All Specialities</option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Dermatology">Dermatology</option>
+              <option value="Pediatrics">Pediatrics</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Orthopedics">Orthopedics</option>
+              <option value="General Medicine">General Medicine</option>
+            </select>
+          </div>
+
+          <!-- Sort dropdown -->
+          <div class="input-with-icon">
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+            <select id="sortFilter" aria-label="Sort doctors">
+              <option value="rating">Sort: Highest Rated</option>
+              <option value="experience">Sort: Most Experienced</option>
+              <option value="fee-low">Sort: Fee (Low to High)</option>
+              <option value="fee-high">Sort: Fee (High to Low)</option>
+            </select>
+          </div>
+
+          <!-- Search Button -->
+          <button class="btn btn-primary" id="btnExecuteSearch" onclick="handleSearchClick()">
+            <i class="fa-solid fa-filter"></i> Apply Filter
+          </button>
+        </div>
+
+        <!-- Filter Sub-bar: Availability Pills & Counter -->
+        <div class="search-filter-footer">
+          <div class="filter-pills-group">
+            <span class="filter-pills-label">Availability:</span>
+            <button class="filter-pill active" data-availability="all" onclick="setAvailabilityFilter('all', this)">All Availability</button>
+            <button class="filter-pill" data-availability="today" onclick="setAvailabilityFilter('today', this)">Available Today</button>
+            <button class="filter-pill" data-availability="tomorrow" onclick="setAvailabilityFilter('tomorrow', this)">Available Tomorrow</button>
+          </div>
+
+          <div class="filter-results-info" id="filterResultsCount">
+            Showing <strong>8</strong> verified doctors
+          </div>
+        </div>
+      </div>
+
+      <!-- Doctor Cards Grid -->
+      <div class="doctors-grid" id="doctorsGrid">
+        <!-- Rendered dynamically by renderDoctorsGrid() -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       6. My Appointments Section
+       ========================================================================= -->
+  <section class="my-appointments" id="appointments">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fa-solid fa-clock-rotate-left"></i> Patient Portal</span>
+        <h2 class="section-title">My Booked Appointments</h2>
+        <p class="section-subtitle">
+          Manage your upcoming consultations, view appointment confirmation receipts, or cancel your booking anytime.
+        </p>
+      </div>
+
+      <!-- Controls & Tabs -->
+      <div class="appointments-controls-bar">
+        <div class="appointments-tab-nav" id="apptTabNav">
+          <button class="tab-btn active" data-tab="all" onclick="filterAppointmentsTab('all', this)">All (<span id="countTabAll">0</span>)</button>
+          <button class="tab-btn" data-tab="confirmed" onclick="filterAppointmentsTab('confirmed', this)">Upcoming (<span id="countTabConfirmed">0</span>)</button>
+          <button class="tab-btn" data-tab="cancelled" onclick="filterAppointmentsTab('cancelled', this)">Cancelled (<span id="countTabCancelled">0</span>)</button>
+        </div>
+
+        <button class="btn btn-secondary btn-sm" onclick="openBookingModal()">
+          <i class="fa-solid fa-plus"></i> New Appointment
+        </button>
+      </div>
+
+      <!-- Appointments List Container -->
+      <div class="appointments-list" id="appointmentsContainer">
+        <!-- Rendered dynamically from localStorage -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7. Why Choose Us Section
+       ========================================================================= -->
+  <section class="why-us" id="why-us">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fa-solid fa-medal"></i> Our Excellence</span>
+        <h2 class="section-title">Why Choose MediCare?</h2>
+        <p class="section-subtitle">
+          We bring high-standard clinical proficiency, seamless digital access, and patient-first empathy into every consultation.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-user-doctor"></i>
+          </div>
+          <h3>Experienced Doctors</h3>
+          <p>
+            All physicians are board-certified specialists with over a decade of clinical experience from world-recognized institutions.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+          <h3>Easy Online Booking</h3>
+          <p>
+            Schedule your preferred time slot within 60 seconds with live slot availability, instant digital passes, and SMS/Email reminders.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <h3>Secure Patient Information</h3>
+          <p>
+            Your confidential medical history and booking data are safeguarded with HIPAA-compliant standards and AES-256 encryption.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-heart-pulse"></i>
+          </div>
+          <h3>Quality Healthcare Services</h3>
+          <p>
+            Modern clinical infrastructure, in-house diagnostics, prompt follow-ups, and a committed 24/7 emergency response team.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       8. Testimonials Section
+       ========================================================================= -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fa-solid fa-comments"></i> Patient Stories</span>
+        <h2 class="section-title">What Our Patients Say</h2>
+        <p class="section-subtitle">
+          Read genuine feedback from patients who booked their consultations through MediCare.
+        </p>
+      </div>
+
+      <div class="testimonials-grid" id="testimonialsGrid">
+        <!-- Rendered dynamically from TESTIMONIALS_DATA -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       9. Contact Section
+       ========================================================================= -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fa-solid fa-headset"></i> Get In Touch</span>
+        <h2 class="section-title">Contact & Hospital Information</h2>
+        <p class="section-subtitle">
+          Have an urgent question or require specialized assistance? Our care coordinators are here for you 24/7.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Left: Hospital Info -->
+        <div class="contact-info-panel">
+          <div class="contact-card-box">
+            <div class="contact-icon">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Main Hospital Address</h4>
+              <p>MediCare Health City, 452 Wellness Blvd, Metro City, NY 10014</p>
+            </div>
+          </div>
+
+          <div class="contact-card-box">
+            <div class="contact-icon">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Contact Number</h4>
+              <p>Appointments: +1 (800) 432-5890<br>General Inquiries: +1 (800) 432-5891</p>
+            </div>
+          </div>
+
+          <div class="contact-card-box">
+            <div class="contact-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Official Email</h4>
+              <p>appointments@medicare-health.org<br>helpdesk@medicare-health.org</p>
+            </div>
+          </div>
+
+          <div class="contact-card-box">
+            <div class="contact-icon">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Working Hours</h4>
+              <p>Mon - Fri: 8:00 AM - 8:00 PM<br>Sat - Sun: 9:00 AM - 5:00 PM</p>
+            </div>
+          </div>
+
+          <!-- Emergency Banner -->
+          <div class="emergency-banner-card">
+            <h4><i class="fa-solid fa-truck-medical"></i> Critical Emergency Services</h4>
+            <p>Our trauma and acute cardiac emergency department is open 24 hours a day, 365 days a year with on-call surgical teams.</p>
+            <a href="tel:8009112273" class="emergency-phone-btn">
+              <i class="fa-solid fa-phone-volume"></i> Emergency Hotline: +1 (800) 911-CARE
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Working Contact Form -->
+        <div class="contact-form-card">
+          <h3>Send Us a Message</h3>
+          <p>Fill out the form below and our medical administration team will respond within 2 hours.</p>
+
+          <form id="contactForm" onsubmit="handleContactSubmit(event)" novalidate>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="contactName">Your Name <span class="req">*</span></label>
+                <input type="text" id="contactName" class="form-control" placeholder="e.g. Alex Morgan" required>
+                <div class="form-error-msg" id="errContactName">Please enter your full name.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contactEmail">Email Address <span class="req">*</span></label>
+                <input type="email" id="contactEmail" class="form-control" placeholder="name@example.com" required>
+                <div class="form-error-msg" id="errContactEmail">Please provide a valid email address.</div>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="contactPhone">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="contactPhone" class="form-control" placeholder="+1 (555) 000-0000" required>
+                <div class="form-error-msg" id="errContactPhone">Please enter a valid phone number.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contactSubject">Inquiry Subject <span class="req">*</span></label>
+                <select id="contactSubject" class="form-control" required>
+                  <option value="">Select a topic...</option>
+                  <option value="Appointment Support">Appointment Support</option>
+                  <option value="Doctor Inquiry">Doctor Consultation Inquiry</option>
+                  <option value="Insurance Coverage">Billing & Insurance</option>
+                  <option value="Feedback">General Feedback</option>
+                </select>
+                <div class="form-error-msg" id="errContactSubject">Please choose a topic.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contactMessage">Your Message <span class="req">*</span></label>
+              <textarea id="contactMessage" class="form-control" rows="4" placeholder="How can we assist you today? Please share relevant details..." required></textarea>
+              <div class="form-error-msg" id="errContactMessage">Please provide your message.</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" id="btnContactSubmit">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       10. Footer
+       ========================================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Col 1: Brand -->
+        <div class="footer-brand">
+          <a href="#home" class="brand-logo">
+            <div class="brand-icon-wrap">
+              <i class="fa-solid fa-stethoscope"></i>
+            </div>
+            <div class="brand-text">Medi<span>Care</span></div>
+          </a>
+          <p>
+            MediCare is an integrated digital healthcare platform dedicated to facilitating accessible, transparent, and prompt appointments with top-rated medical specialists.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Facebook" onclick="event.preventDefault(); showToast('Connecting to Facebook...', 'info')"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="Twitter" onclick="event.preventDefault(); showToast('Connecting to Twitter/X...', 'info')"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-btn" aria-label="LinkedIn" onclick="event.preventDefault(); showToast('Connecting to LinkedIn...', 'info')"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram" onclick="event.preventDefault(); showToast('Connecting to Instagram...', 'info')"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#specialities">Specialities</a></li>
+            <li><a href="#doctors">Find Doctors</a></li>
+            <li><a href="#appointments">My Appointments</a></li>
+            <li><a href="#why-us">Why Choose Us</a></li>
+            <li><a href="#contact">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Services -->
+        <div class="footer-col">
+          <h4>Specialities</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#doctors" onclick="filterBySpeciality('Cardiology')">Cardiology</a></li>
+            <li><a href="#doctors" onclick="filterBySpeciality('Neurology')">Neurology</a></li>
+            <li><a href="#doctors" onclick="filterBySpeciality('Pediatrics')">Pediatrics</a></li>
+            <li><a href="#doctors" onclick="filterBySpeciality('Orthopedics')">Orthopedics</a></li>
+            <li><a href="#doctors" onclick="filterBySpeciality('Dermatology')">Dermatology</a></li>
+            <li><a href="#doctors" onclick="filterBySpeciality('General Medicine')">General Medicine</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Newsletter & Emergency -->
+        <div class="footer-col newsletter-box">
+          <h4>Health Newsletter</h4>
+          <p>Subscribe for periodic health tips, doctor schedules, and wellness updates.</p>
+          <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+            <input type="email" id="newsletterEmail" class="newsletter-input" placeholder="Your email..." required>
+            <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-arrow-right"></i></button>
+          </form>
+          <div style="margin-top: 1.5rem; font-size: 0.82rem; color: var(--slate-400);">
+            <i class="fa-solid fa-shield-halved" style="color: var(--teal-400); margin-right: 0.35rem;"></i> HIPAA Compliant Patient Portal
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Credits -->
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="currentYear">2026</span> MediCare Health Systems Inc. All rights reserved.
+        </div>
+        <div class="footer-bottom-links">
+          <a href="#" onclick="event.preventDefault(); showToast('Privacy Policy: MediCare adheres strictly to patient HIPAA privacy standards.', 'info')">Privacy Policy</a>
+          <a href="#" onclick="event.preventDefault(); showToast('Terms of Service: MediCare provides digital appointment scheduling assistance.', 'info')">Terms of Service</a>
+          <a href="#" onclick="event.preventDefault(); showToast('Accessibility: MediCare conforms to WCAG 2.1 AA accessibility guidelines.', 'info')">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       11. Appointment Booking Modal (Interactive 3-Step Wizard)
+       ========================================================================= -->
+  <div class="modal-overlay" id="bookingModalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="booking-modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h3 id="modalTitle"><i class="fa-solid fa-calendar-check"></i> Book Doctor Appointment</h3>
+        <button class="modal-close-btn" onclick="closeBookingModal()" aria-label="Close appointment modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Steps Wizard Bar -->
+      <div class="booking-steps-bar">
+        <div class="step-indicator active" id="stepIndicator1">
+          <div class="step-number">1</div>
+          <span>Doctor & Date</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-indicator" id="stepIndicator2">
+          <div class="step-number">2</div>
+          <span>Patient Info</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-indicator" id="stepIndicator3">
+          <div class="step-number">3</div>
+          <span>Summary</span>
+        </div>
+      </div>
+
+      <!-- Modal Body Form Steps -->
+      <div class="modal-body">
+        <form id="bookingForm" onsubmit="event.preventDefault()">
+          
+          <!-- STEP 1: Select Doctor & Schedule -->
+          <div class="form-step active" id="bookingStep1">
+            
+            <!-- Doctor Selected Quick Preview Banner (visible if doctor is selected) -->
+            <div class="selected-doc-banner" id="modalDoctorBanner" style="display: none;">
+              <img src="" alt="" id="modalDocBannerImg" class="selected-doc-avatar">
+              <div class="selected-doc-meta">
+                <h4 id="modalDocBannerName">Dr. Name</h4>
+                <p id="modalDocBannerSub">Speciality &bull; Fee: $0</p>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <!-- Specialization Select -->
+              <div class="form-group">
+                <label class="form-label" for="modalSpeciality">
+                  <i class="fa-solid fa-stethoscope"></i> Medical Speciality <span class="req">*</span>
+                </label>
+                <select id="modalSpeciality" class="form-control" onchange="onModalSpecialityChange()" required>
+                  <option value="">-- Choose Speciality --</option>
+                  <option value="Cardiology">Cardiology</option>
+                  <option value="Dermatology">Dermatology</option>
+                  <option value="Pediatrics">Pediatrics</option>
+                  <option value="Neurology">Neurology</option>
+                  <option value="Orthopedics">Orthopedics</option>
+                  <option value="General Medicine">General Medicine</option>
+                </select>
+                <div class="form-error-msg" id="errModalSpeciality">Please select a specialization.</div>
+              </div>
+
+              <!-- Doctor Select -->
+              <div class="form-group">
+                <label class="form-label" for="modalDoctor">
+                  <i class="fa-solid fa-user-doctor"></i> Select Doctor <span class="req">*</span>
+                </label>
+                <select id="modalDoctor" class="form-control" onchange="onModalDoctorChange()" required>
+                  <option value="">-- Choose Doctor --</option>
+                </select>
+                <div class="form-error-msg" id="errModalDoctor">Please select a doctor.</div>
+              </div>
+            </div>
+
+            <!-- Date Picker (Prevent Past Dates) -->
+            <div class="form-group">
+              <label class="form-label" for="modalDate">
+                <i class="fa-solid fa-calendar-day"></i> Appointment Date <span class="req">*</span>
+              </label>
+              <input type="date" id="modalDate" class="form-control" onchange="onModalDateChange()" required>
+              <div class="form-hint"><i class="fa-solid fa-circle-info"></i> Past dates are disabled. Clinic operates Monday through Saturday.</div>
+              <div class="form-error-msg" id="errModalDate">Please choose a valid upcoming appointment date.</div>
+            </div>
+
+            <!-- Time Slot Selection Grid -->
+            <div class="form-group">
+              <div class="slots-picker-header">
+                <label class="form-label">
+                  <i class="fa-solid fa-clock"></i> Available Time Slots <span class="req">*</span>
+                </label>
+                <span id="slotsLoadingStatus" style="font-size: 0.8rem; color: var(--slate-500);"></span>
+              </div>
+
+              <div class="slots-grid-container" id="modalSlotsGrid">
+                <div style="grid-column: 1/-1; text-align: center; color: var(--slate-400); font-size: 0.88rem; padding: 1rem;">
+                  Please select a doctor and date to view available time slots.
+                </div>
+              </div>
+
+              <!-- Hidden input to store chosen slot -->
+              <input type="hidden" id="modalSelectedSlot" required>
+              <div class="form-error-msg" id="errModalSlot">Please select an available time slot.</div>
+
+              <!-- Slots Legend -->
+              <div class="slots-legend">
+                <div class="legend-item"><span class="legend-dot available"></span> Available</div>
+                <div class="legend-item"><span class="legend-dot selected"></span> Selected</div>
+                <div class="legend-item"><span class="legend-dot booked"></span> Booked</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: Patient Information -->
+          <div class="form-step" id="bookingStep2">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="patientFullName">
+                  <i class="fa-solid fa-user"></i> Patient Full Name <span class="req">*</span>
+                </label>
+                <input type="text" id="patientFullName" class="form-control" placeholder="e.g. John Doe" required>
+                <div class="form-error-msg" id="errPatientFullName">Please enter the patient's full name.</div>
+              </div>
+
+              <div class="form-grid-2" style="margin-bottom: 0;">
+                <div class="form-group">
+                  <label class="form-label" for="patientAge">
+                    <i class="fa-solid fa-cake-candles"></i> Age <span class="req">*</span>
+                  </label>
+                  <input type="number" id="patientAge" class="form-control" min="1" max="120" placeholder="Age" required>
+                  <div class="form-error-msg" id="errPatientAge">Enter a valid age (1-120).</div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="patientGender">
+                    <i class="fa-solid fa-venus-mars"></i> Gender <span class="req">*</span>
+                  </label>
+                  <select id="patientGender" class="form-control" required>
+                    <option value="">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <div class="form-error-msg" id="errPatientGender">Select gender.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="patientPhone">
+                  <i class="fa-solid fa-phone"></i> Phone Number <span class="req">*</span>
+                </label>
+                <input type="tel" id="patientPhone" class="form-control" placeholder="+1 (555) 123-4567" required>
+                <div class="form-hint">Used for instant SMS confirmation and reminders.</div>
+                <div class="form-error-msg" id="errPatientPhone">Enter a valid 10-digit phone number.</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="patientEmail">
+                  <i class="fa-solid fa-envelope"></i> Email Address <span class="req">*</span>
+                </label>
+                <input type="email" id="patientEmail" class="form-control" placeholder="john.doe@example.com" required>
+                <div class="form-hint">Receipt and doctor instructions will be emailed here.</div>
+                <div class="form-error-msg" id="errPatientEmail">Enter a valid email address.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="patientReason">
+                <i class="fa-solid fa-notes-medical"></i> Reason for Visit <span class="req">*</span>
+              </label>
+              <textarea id="patientReason" class="form-control" rows="3" placeholder="Briefly describe primary symptoms, complaints, or reason for this consultation..." required></textarea>
+              <div class="form-error-msg" id="errPatientReason">Please describe the reason for visit.</div>
+            </div>
+          </div>
+
+          <!-- STEP 3: Booking Summary & Final Confirmation -->
+          <div class="form-step" id="bookingStep3">
+            <div class="booking-summary-box">
+              <h4 style="margin-bottom: 1rem; color: var(--navy-900); font-size: 1.1rem;">
+                <i class="fa-solid fa-clipboard-check" style="color: var(--teal-600); margin-right: 0.4rem;"></i> Please Review Your Booking Details
+              </h4>
+
+              <div class="summary-row">
+                <span class="summary-label">Doctor</span>
+                <span class="summary-value" id="summaryDoctor">-</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Speciality & Clinic</span>
+                <span class="summary-value" id="summarySpeciality">-</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Date & Time</span>
+                <span class="summary-value" id="summaryDateTime">-</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Patient Name</span>
+                <span class="summary-value" id="summaryPatientName">-</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Age & Gender</span>
+                <span class="summary-value" id="summaryPatientMeta">-</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Contact</span>
+                <span class="summary-value" id="summaryContact">-</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Reason</span>
+                <span class="summary-value" id="summaryReason" style="font-weight: 500;">-</span>
+              </div>
+
+              <!-- Price breakdown -->
+              <div class="summary-price-total">
+                <div>
+                  <h4>Consultation Fee</h4>
+                  <small style="color: var(--slate-500);">Payable at clinic desk or via insurance</small>
+                </div>
+                <div class="fee-amount" id="summaryFee">$0</div>
+              </div>
+            </div>
+
+            <p style="font-size: 0.82rem; color: var(--slate-500); text-align: center;">
+              By clicking "Confirm & Book Appointment", you agree to MediCare's appointment terms and free cancellation up to 2 hours prior to scheduled time.
+            </p>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Modal Navigation Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btnModalBack" onclick="goToPreviousBookingStep()" style="visibility: hidden;">
+          <i class="fa-solid fa-arrow-left"></i> Back
+        </button>
+        <div style="display: flex; gap: 0.75rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeBookingModal()">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary" id="btnModalNext" onclick="goToNextBookingStep()">
+            Continue <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       12. Booking Success & Appointment Pass Modal
+       ========================================================================= -->
+  <div class="modal-overlay" id="successModalOverlay" role="dialog" aria-modal="true">
+    <div class="success-modal-content">
+      <div class="success-header-graphic">
+        <div class="success-check-circle">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h2>Appointment Confirmed!</h2>
+        <p>Your appointment has been successfully booked and registered.</p>
+      </div>
+
+      <div class="success-receipt-card">
+        <div class="ticket-id-badge" id="receiptAppointmentId">
+          ID: MED-000000
+        </div>
+
+        <div class="receipt-details-list">
+          <div class="receipt-item">
+            <span>Doctor:</span>
+            <span id="receiptDoctorName">-</span>
+          </div>
+          <div class="receipt-item">
+            <span>Specialization:</span>
+            <span id="receiptSpeciality">-</span>
+          </div>
+          <div class="receipt-item">
+            <span>Date:</span>
+            <span id="receiptDate">-</span>
+          </div>
+          <div class="receipt-item">
+            <span>Time Slot:</span>
+            <span id="receiptTime">-</span>
+          </div>
+          <div class="receipt-item">
+            <span>Patient:</span>
+            <span id="receiptPatient">-</span>
+          </div>
+          <div class="receipt-item">
+            <span>Hospital:</span>
+            <span id="receiptHospital">-</span>
+          </div>
+          <div class="receipt-item">
+            <span>Consultation Fee:</span>
+            <span id="receiptFee" style="color: var(--teal-600);">-</span>
+          </div>
+        </div>
+
+        <div class="success-actions">
+          <button class="btn btn-secondary" onclick="printReceipt()">
+            <i class="fa-solid fa-print"></i> Print / Save Slip
+          </button>
+          <button class="btn btn-primary" onclick="closeSuccessAndGoToAppointments()">
+            <i class="fa-solid fa-list-check"></i> View in My Appointments
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       13. Doctor Profile Details Modal
+       ========================================================================= -->
+  <div class="modal-overlay" id="doctorProfileModalOverlay" role="dialog" aria-modal="true">
+    <div class="profile-modal-content">
+      <div class="doc-profile-hero">
+        <button class="modal-close-btn" style="position: absolute; top: 1.25rem; right: 1.25rem;" onclick="closeDoctorProfileModal()" aria-label="Close profile">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="doc-profile-flex">
+          <img src="" alt="" id="profModalImg" class="doc-profile-avatar">
+          <div class="doc-profile-info">
+            <span class="doc-speciality-chip" id="profModalSpeciality" style="background: rgba(255,255,255,0.2); color: #fff;">Speciality</span>
+            <h3 id="profModalName">Doctor Name</h3>
+            <p id="profModalQual">Qualification</p>
+            <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 1rem; font-size: 0.85rem;">
+              <span><i class="fa-solid fa-star" style="color: #fbbf24;"></i> <strong id="profModalRating">4.9</strong></span>
+              <span><i class="fa-solid fa-briefcase"></i> <span id="profModalExp">12</span> Years Exp</span>
+              <span><i class="fa-solid fa-money-bill-wave"></i> Fee: $<strong id="profModalFee">100</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-profile-body">
+        <div class="doc-bio-block">
+          <h4>About Specialist</h4>
+          <p id="profModalBio">Doctor bio description...</p>
+        </div>
+
+        <div class="doc-bio-block">
+          <h4>Education & Credentials</h4>
+          <p id="profModalEdu">Education details...</p>
+        </div>
+
+        <div class="doc-bio-block">
+          <h4>Affiliated Hospital</h4>
+          <p id="profModalHospital">Hospital name...</p>
+        </div>
+
+        <div class="doc-bio-block">
+          <h4>Languages Spoken</h4>
+          <p id="profModalLanguages">English</p>
+        </div>
+
+        <div style="margin-top: 2rem; display: flex; justify-content: flex-end; gap: 1rem;">
+          <button class="btn btn-secondary" onclick="closeDoctorProfileModal()">Close</button>
+          <button class="btn btn-primary" id="btnProfBookDoctor" onclick="bookFromDoctorProfile()">
+            <i class="fa-solid fa-calendar-check"></i> Book Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       14. Confirmation Dialog Modal (Cancel Appointment)
+       ========================================================================= -->
+  <div class="modal-overlay" id="confirmModalOverlay" role="dialog" aria-modal="true">
+    <div class="confirm-dialog-content">
+      <div class="confirm-icon">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <h3 id="confirmModalTitle">Cancel Appointment?</h3>
+      <p id="confirmModalMsg">Are you sure you want to cancel this scheduled appointment? You can rebook anytime.</p>
+      <div class="confirm-actions">
+        <button class="btn btn-secondary" onclick="closeConfirmModal()">Keep Appointment</button>
+        <button class="btn btn-navy" style="background: var(--danger);" id="btnExecuteConfirmAction">
+          Yes, Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       15. Floating Toast Notifications Container
+       ========================================================================= -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/doctors.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
