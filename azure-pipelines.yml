@@ -1,0 +1,46 @@
+
+# MediCare - Doctor Appointment Website CI Pipeline
+
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - checkout: self
+    displayName: 'Checkout source code'
+
+  - script: |
+      echo "Checking MediCare project files..."
+
+      test -f index.html
+      test -f css/styles.css
+      test -f js/app.js
+      test -f js/doctors.js
+      test -f package.json
+
+      echo "All required project files are present."
+    displayName: 'Validate project files'
+
+  - script: |
+      echo "Validating package.json..."
+      python3 -m json.tool package.json > /dev/null
+      echo "Package JSON validation successful."
+    displayName: 'Validate package configuration'
+
+  - script: |
+      mkdir -p "$(Build.ArtifactStagingDirectory)/medicare"
+
+      cp index.html package.json README.md "$(Build.ArtifactStagingDirectory)/medicare/"
+      cp -r css js "$(Build.ArtifactStagingDirectory)/medicare/"
+
+      echo "MediCare frontend build preparation completed."
+    displayName: 'Prepare frontend artifact'
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)/medicare'
+      artifact: 'MediCare-Frontend'
+      publishLocation: 'pipeline'
+    displayName: 'Publish MediCare frontend'
