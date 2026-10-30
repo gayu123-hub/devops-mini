@@ -4,7 +4,7 @@ A modern, responsive, single-page interactive healthcare application built with 
 
 ---
 
-## 🌟 Key Featuresssssssss
+## 🌟 Key Feature
 
 ### 1. Modern Healthcare UI & Aesthetics
 - **Curated Medical Palette:** White, light blue, brand teal, cyan, and deep navy blue.
@@ -98,3 +98,5 @@ A modern, responsive, single-page interactive healthcare application built with 
 Because the project is built with standard HTML5, CSS3, and ES6 JavaScript:
 1. Double-click [index.html](file:///c:/Users/gayat/New%20folder%20(2)/index.html) to open directly in any modern browser (Chrome, Edge, Firefox, Safari).
 2. Or serve via any local static server (e.g., VS Code Live Server, Python `python -m http.server 8000`, or Node `npx serve .`).
+
+CI/CD Integration: Automated build validation using Azure DevOps.
